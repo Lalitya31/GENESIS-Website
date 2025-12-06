@@ -1,0 +1,47 @@
+/* Global styles for the Team Genesis website */
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif; /* Replace with the actual font family */
+    background-color: #121212; /* Example dark background, adjust as per design */
+    color: #ffffff; /* Example text color, adjust as per design */
+    line-height: 1.6;
+}
+
+/* Links */
+a {
+    color: #9c27b0; /* Example link color, adjust as per design */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem; /* Adjust spacing as per design */
+}
+
+/* Utility Classes */
+.container {
+    max-width: 1200px; /* Example max width, adjust as per design */
+    margin: 0 auto;
+    padding: 0 1rem; /* Adjust padding as per design */
+}
+
+.flex {
+    display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+/* Add any additional global styles as needed */

@@ -1,0 +1,21 @@
+:root {
+    --primary-color: #6a0dad; /* Example purplish color */
+    --secondary-color: #e0e0e0; /* Light gray for text */
+    --background-color-light: #ffffff; /* Light background */
+    --background-color-dark: #121212; /* Dark background */
+    --accent-color: rgba(106, 13, 173, 0.5); /* Subtle glow effect */
+    
+    --font-family: 'Roboto', sans-serif; /* Example font family */
+    --font-size-base: 16px; /* Base font size */
+    --font-size-lg: 24px; /* Large font size for headings */
+    --font-size-sm: 14px; /* Small font size for subheadings */
+    
+    --spacing-xs: 4px; /* Extra small spacing */
+    --spacing-sm: 8px; /* Small spacing */
+    --spacing-md: 16px; /* Medium spacing */
+    --spacing-lg: 32px; /* Large spacing */
+    --spacing-xl: 64px; /* Extra large spacing */
+    
+    --border-radius: 8px; /* Border radius for buttons and cards */
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
