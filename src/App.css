@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   margin: 0;
   padding: 0;
@@ -16,3 +17,10 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+=======
+.App {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
+>>>>>>> db20c8b62fa251dad0c1d761ff409f8a937e1e75
