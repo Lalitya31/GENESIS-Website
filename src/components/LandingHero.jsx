@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LandingHero.css';
-import robotImage from '../assets/images/robot.png'; // Update extension if needed
+import robotImage from '../assets/images/robot.png';
 
 function LandingHero() {
   const navigate = useNavigate();
@@ -12,21 +12,21 @@ function LandingHero() {
 
   return (
     <div className="landing-hero">
-      <div className="radial-glow"></div>
       <div className="hero-content">
-        <h1 className="welcome-text">WELCOME TO GENESIS</h1>
-        <div className="subheading">
-          <p className="filling-life">Filling Life Into</p>
-          <p className="humanoids-text">Humanoids</p>
+        <div className="text-section">
+          <h1 className="main-title">
+            <span className="welcome-text">WELCOME TO</span>
+            <span className="team-name">GENESIS</span>
+          </h1>
+          <p className="tagline">
+            <span className="breathing-text">breathing life into</span>
+            <span className="humanoids-text">Humanoids</span>
+          </p>
         </div>
-        <div className="hero-image">
-          <img
-            src={robotImage}
-            alt="Robot"
-            className="robot-image"
-            onClick={handleRobotClick}
-            style={{ cursor: 'pointer' }}
-          />
+        
+        <div className="robot-section" onClick={handleRobotClick}>
+          <img src={robotImage} alt="Genesis Robot" className="robot-image" />
+          <div className="click-hint">Click to explore →</div>
         </div>
       </div>
     </div>

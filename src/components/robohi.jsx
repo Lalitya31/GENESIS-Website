@@ -45,32 +45,125 @@ function Robohi() {
     departmentsRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Add this useEffect for laser-word interaction
+  useEffect(() => {
+    const handleLaserWordGlow = () => {
+      const words = document.querySelectorAll('.tech-word');
+      const container = containerRef.current;
+      
+      if (!container) return;
+      
+      const rect = container.getBoundingClientRect();
+      const laserOriginX = rect.left + (rect.width * 0.5);
+      const laserOriginY = rect.top + (rect.height * 0.4);
+      
+      words.forEach(word => {
+        const wordRect = word.getBoundingClientRect();
+        const wordCenterX = wordRect.left + wordRect.width / 2;
+        const wordCenterY = wordRect.top + wordRect.height / 2;
+        
+        // Calculate distance from laser origin to word
+        const distance = Math.sqrt(
+          Math.pow(wordCenterX - laserOriginX, 2) + 
+          Math.pow(wordCenterY - laserOriginY, 2)
+        );
+        
+        // Calculate angle to word
+        const angleToWord = Math.atan2(wordCenterY - laserOriginY, wordCenterX - laserOriginX) * (180 / Math.PI);
+        const angleDifference = Math.abs(angleToWord - laserAngle);
+        
+        // If laser is pointing near the word (within 15 degrees) and close enough
+        if (angleDifference < 15 && distance < 800) {
+          // Inverse proportion: closer = more glow
+          const glowIntensity = Math.max(0, 1 - (distance / 800));
+          const opacity = 0.15 + (glowIntensity * 0.85); // 0.15 to 1
+          
+          word.style.color = `rgba(168, 85, 247, ${opacity})`;
+          word.style.textShadow = `
+            0 0 ${20 * glowIntensity}px rgba(168, 85, 247, ${glowIntensity}),
+            0 0 ${40 * glowIntensity}px rgba(236, 72, 153, ${glowIntensity * 0.8}),
+            0 0 ${60 * glowIntensity}px rgba(168, 85, 247, ${glowIntensity * 0.6})
+          `;
+          word.style.transform = `scale(${1 + glowIntensity * 0.2})`;
+        } else {
+          // Reset to default dim state
+          word.style.color = 'rgba(168, 85, 247, 0.15)';
+          word.style.textShadow = '0 0 10px rgba(168, 85, 247, 0.1)';
+          word.style.transform = 'scale(1)';
+        }
+      });
+    };
+    
+    const interval = setInterval(handleLaserWordGlow, 50);
+    
+    return () => clearInterval(interval);
+  }, [laserAngle]);
+
   return (
     <div className="robo-hi">
+      {/* Neon Grid - Full page, fixed position */}
+      <div className="neon-grid"></div>
+
       {/* Hero Section with Robot */}
       <div className="hero-section">
+        {/* Floating Tech Words */}
+        <div className="floating-tech-words">
+          <span className="tech-word" data-word="SOFTWARE" style={{ top: '25%', left: '20%' }}>SOFTWARE</span>
+          <span className="tech-word" data-word="AI" style={{ top: '35%', left: '75%' }}>AI</span>
+          <span className="tech-word" data-word="GRIT" style={{ top: '45%', left: '15%' }}>GRIT</span>
+          <span className="tech-word" data-word="POWER" style={{ top: '40%', right: '18%' }}>POWER</span>
+          <span className="tech-word" data-word="STRENGTH" style={{ top: '60%', left: '22%' }}>STRENGTH</span>
+          <span className="tech-word" data-word="ELASTICITY" style={{ top: '28%', right: '22%' }}>ELASTICITY</span>
+          <span className="tech-word" data-word="SOCKET" style={{ top: '65%', right: '20%' }}>SOCKET</span>
+          <span className="tech-word" data-word="PCB" style={{ top: '70%', left: '18%' }}>PCB</span>
+          <span className="tech-word" data-word="RC" style={{ top: '50%', right: '25%' }}>RC</span>
+          <span className="tech-word" data-word="FORUM" style={{ top: '75%', right: '40%' }}>FORUM</span>
+          <span className="tech-word" data-word="AGILE" style={{ top: '35%', left: '28%' }}>AGILE</span>
+          <span className="tech-word" data-word="LOAD" style={{ top: '55%', left: '25%' }}>LOAD</span>
+          <span className="tech-word" data-word="CONNECTION" style={{ top: '72%', left: '25%' }}>CONNECTION</span>
+          <span className="tech-word" data-word="LFR" style={{ top: '48%', left: '78%' }}>LFR</span>
+          <span className="tech-word" data-word="SENSORS" style={{ top: '20%', left: '35%' }}>SENSORS</span>
+          <span className="tech-word" data-word="ROS" style={{ top: '78%', right: '25%' }}>ROS</span>
+        </div>
+
         <div className="heading-section">
           <h1 className="glowy-heading" onClick={handleMeetTheTeam}>
             MEET THE TEAM
           </h1>
         </div>
-
+        
         <div className="robot-container" ref={containerRef}>
           <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" className="robot-head-svg">
             <defs>
               <linearGradient id="laserBeam" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#a855f7" stopOpacity="0.9" />
-                <stop offset="15%" stopColor="#c084fc" stopOpacity="0.7" />
-                <stop offset="40%" stopColor="#e879f9" stopOpacity="0.4" />
-                <stop offset="70%" stopColor="#a855f7" stopOpacity="0.15" />
+                <stop offset="0%" stopColor="#a855f7" stopOpacity="0.95" />
+                <stop offset="3%" stopColor="#c084fc" stopOpacity="0.9" />
+                <stop offset="8%" stopColor="#e879f9" stopOpacity="0.8" />
+                <stop offset="15%" stopColor="#c084fc" stopOpacity="0.65" />
+                <stop offset="25%" stopColor="#a855f7" stopOpacity="0.5" />
+                <stop offset="40%" stopColor="#e879f9" stopOpacity="0.3" />
+                <stop offset="60%" stopColor="#c084fc" stopOpacity="0.15" />
+                <stop offset="80%" stopColor="#a855f7" stopOpacity="0.05" />
+                <stop offset="95%" stopColor="#e879f9" stopOpacity="0.01" />
                 <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
               </linearGradient>
 
               <filter id="laserGlow">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
                 <feMerge>
                   <feMergeNode in="coloredBlur"/>
                   <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+
+              <filter id="laserHaze">
+                <feGaussianBlur stdDeviation="15" result="blur1"/>
+                <feGaussianBlur stdDeviation="25" result="blur2"/>
+                <feMerge>
+                  <feMergeNode in="blur2"/>
+                  <feMergeNode in="blur1"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
@@ -108,11 +201,24 @@ function Robohi() {
               <circle cx="295" cy="235" r="5" fill="#faf5ff" opacity="0.9"/>
 
               <g style={{ transform: `rotate(${laserAngle}deg)`, transformOrigin: '300px 240px', transition: 'transform 0.1s ease-out' }}>
-                <path d="M 300 240 L 1400 190 L 1400 290 Z" fill="url(#laserBeam)" opacity="0.15"/>
-                <path d="M 300 240 L 1400 200 L 1400 280 Z" fill="url(#laserBeam)" opacity="0.25"/>
-                <path d="M 300 240 L 1400 215 L 1400 265 Z" fill="url(#laserBeam)" opacity="0.4"/>
-                <path d="M 300 240 L 1400 225 L 1400 255 Z" fill="url(#laserBeam)" opacity="0.7"/>
-                <path d="M 300 240 L 1400 235 L 1400 245 Z" fill="url(#laserBeam)" opacity="0.9"/>
+                {/* Ultra-wide outer haze - very diffused */}
+                <path d="M 300 240 L 3000 100 L 3000 380 Z" fill="url(#laserBeam)" opacity="0.03" filter="url(#laserHaze)"/>
+                <path d="M 300 240 L 3000 130 L 3000 350 Z" fill="url(#laserBeam)" opacity="0.05" filter="url(#laserHaze)"/>
+                <path d="M 300 240 L 3000 150 L 3000 330 Z" fill="url(#laserBeam)" opacity="0.08" filter="url(#laserHaze)"/>
+                
+                {/* Wide glow layers */}
+                <path d="M 300 240 L 2800 170 L 2800 310 Z" fill="url(#laserBeam)" opacity="0.12" filter="url(#laserGlow)"/>
+                <path d="M 300 240 L 2600 185 L 2600 295 Z" fill="url(#laserBeam)" opacity="0.18" filter="url(#laserGlow)"/>
+                <path d="M 300 240 L 2400 200 L 2400 280 Z" fill="url(#laserBeam)" opacity="0.25" filter="url(#laserGlow)"/>
+                
+                {/* Mid-range glow */}
+                <path d="M 300 240 L 2200 210 L 2200 270 Z" fill="url(#laserBeam)" opacity="0.35" filter="url(#laserGlow)"/>
+                <path d="M 300 240 L 2000 218 L 2000 262 Z" fill="url(#laserBeam)" opacity="0.5" filter="url(#laserGlow)"/>
+                
+                {/* Core beam */}
+                <path d="M 300 240 L 1800 225 L 1800 255 Z" fill="url(#laserBeam)" opacity="0.7"/>
+                <path d="M 300 240 L 1600 232 L 1600 248 Z" fill="url(#laserBeam)" opacity="0.9"/>
+                <path d="M 300 240 L 1400 237 L 1400 243 Z" fill="#e879f9" opacity="0.95"/>
               </g>
             </g>
 
@@ -163,8 +269,7 @@ function Robohi() {
             <div className="dept-image">
               <img src={softwareImg} alt="Software" />
             </div>
-            <h3>Software & </h3>
-             <h3> A.I.</h3>
+            <h3>Software & A.I.</h3>
             <p>Intelligence meets automation</p>
           </div>
         </div>
@@ -177,7 +282,7 @@ function Robohi() {
           <p className="contact-subtitle">Join the Innovation Journey</p>
 
           <div className="contact-grid">
-            {/* Email Card */}
+            {/* Email Card with 15 Particles */}
             <a href="mailto:genesisatvitc@gmail.com" className="contact-card email-card">
               <div className="card-glow"></div>
               <div className="icon-wrapper">
@@ -189,9 +294,15 @@ function Robohi() {
               <h3>Email</h3>
               <p>genesisatvitc@gmail.com</p>
               <div className="hover-text">Drop us a message</div>
+              
+              <div className="card-particles">
+                {[...Array(15)].map((_, i) => (
+                  <div key={i} className="card-particle"></div>
+                ))}
+              </div>
             </a>
 
-            {/* LinkedIn Card */}
+            {/* LinkedIn Card with 15 Particles */}
             <a href="https://linkedin.com/company/genesisvitc" target="_blank" rel="noopener noreferrer" className="contact-card linkedin-card">
               <div className="card-glow"></div>
               <div className="icon-wrapper">
@@ -204,9 +315,15 @@ function Robohi() {
               <h3>LinkedIn</h3>
               <p>@genesisvitc</p>
               <div className="hover-text">Connect professionally</div>
+              
+              <div className="card-particles">
+                {[...Array(15)].map((_, i) => (
+                  <div key={i} className="card-particle"></div>
+                ))}
+              </div>
             </a>
 
-            {/* Instagram Card */}
+            {/* Instagram Card with 15 Particles */}
             <a href="https://www.instagram.com/genesis.vitc" target="_blank" rel="noopener noreferrer" className="contact-card instagram-card">
               <div className="card-glow"></div>
               <div className="icon-wrapper">
@@ -219,37 +336,18 @@ function Robohi() {
               <h3>Instagram</h3>
               <p>@genesis.vitc</p>
               <div className="hover-text">Follow our journey</div>
+              
+              <div className="card-particles">
+                {[...Array(15)].map((_, i) => (
+                  <div key={i} className="card-particle"></div>
+                ))}
+              </div>
             </a>
-          </div>
-
-          {/* Floating particles decoration */}
-          <div className="floating-particles">
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
-            <div className="particle"></div>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 
 export default Robohi;
