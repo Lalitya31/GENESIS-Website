@@ -30,31 +30,3 @@ team-genesis-website
 └── README.md               # Documentation for the project
 ```
 
-## Setup Instructions
-1. **Clone the repository:**
-   ```
-   git clone <repository-url>
-   cd team-genesis-website
-   ```
-
-2. **Install dependencies:**
-   ```
-   npm install
-   ```
-
-3. **Run the application:**
-   ```
-   npm start
-   ```
-   This will start the development server and open the application in your default web browser.
-
-## Usage Guidelines
-- Follow the design specifications provided for the UI implementation.
-- Ensure that all components are implemented pixel-perfectly as per the finalized design.
-- Maintain the project structure and adhere to the coding standards set for the project.
-
-## Contributing
-Contributions are welcome! Please follow the standard Git workflow for contributing to this project. 
-
-## License
-This project is licensed under the MIT License.
