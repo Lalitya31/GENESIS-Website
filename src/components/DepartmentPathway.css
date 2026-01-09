@@ -1,0 +1,52 @@
+.department-pathway {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.pathway-container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  overflow: visible;
+}
+
+/* Vertical line running through the center */
+.pathway-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    rgba(139, 92, 246, 0.2),
+    rgba(139, 92, 246, 0.6),
+    rgba(139, 92, 246, 0.2)
+  );
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.pathway-stages {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem 0;
+  overflow: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pathway-container {
+    padding: 0 1rem;
+  }
+  
+  .pathway-stages {
+    gap: 2rem;
+  }
+}

@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Leads.css';
 import leadsBg from '../assets/images/leads-bg.png';
+import DepartmentPathway from '../components/DepartmentPathway';
+import { leadsMembers } from '../data/leadsMembers';
 
 function Leads() {
   const navigate = useNavigate();
@@ -25,20 +27,20 @@ function Leads() {
       </button>
 
       {/* Main Content */}
-      <div className="leads-content">
-        {/* Top Section - Title */}
-        <div className="header-section">
-          <div className="title-badge">
-            <h1 className="leads-title">LEADS</h1>
+      <div className="department-layout">
+        {/* Left Side - Department Info */}
+        <div className="department-info">
+          {/* Top Section - Title */}
+          <div className="header-section">
+            <div className="title-badge">
+              <h1 className="leads-title">LEADS</h1>
+            </div>
+            <p className="leads-subtitle">
+              The Leads are the connectors of Genesis — bridging ideas, people, and departments with empathy and energy.
+            </p>
           </div>
-          <p className="leads-subtitle">
-            The Leads are the connectors of Genesis — bridging ideas, people, and departments with empathy and energy.
-          </p>
-        </div>
 
-        {/* Bottom Section - Card Left, Magic Circle Right */}
-        <div className="bottom-section">
-          {/* Left - Who Are We Card */}
+          {/* Who Are We Card */}
           <div className="who-card">
             <h2 className="who-title">WHO ARE WE ?</h2>
             
@@ -54,11 +56,11 @@ function Leads() {
               <p>Together, we grow, laugh, and learn—side by side.</p>
             </div>
           </div>
+        </div>
 
-          {/* Right - Magic Circle Graphic (background shows through) */}
-          <div className="magic-circle-graphic">
-            {/* Background magic circle will be visible here */}
-          </div>
+        {/* Right Side - Pathway Component */}
+        <div className="department-pathway-container">
+          <DepartmentPathway members={leadsMembers} />
         </div>
       </div>
     </div>

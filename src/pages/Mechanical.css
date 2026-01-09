@@ -2,10 +2,11 @@
 
 .mechanical-page {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: #0a0118;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Neon Grid */
@@ -78,6 +79,35 @@
   border-color: rgba(168, 85, 247, 0.6);
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
   transform: translateX(-5px);
+}
+
+/* Department Layout Structure */
+.department-layout {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  padding: 110px 60px 40px;
+  gap: 3rem;
+}
+
+.department-info {
+  flex: 0 0 45%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.department-pathway-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2rem;
+  overflow: visible;
+  position: relative;
 }
 
 /* Main Content Container */
@@ -248,9 +278,28 @@
   .robot-graphic {
     height: 300px;
   }
+
+  .department-layout {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .department-info {
+    flex: none;
+    max-width: 100%;
+  }
+
+  .department-pathway-container {
+    width: 100%;
+    padding-top: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .department-layout {
+    padding: 90px 20px 40px;
+  }
+
   .mechanical-title {
     font-size: 1.8rem;
     letter-spacing: 0.15em;

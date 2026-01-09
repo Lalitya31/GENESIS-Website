@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Mechanical.css';
 import mechanicalBg from '../assets/images/mechanical-and-design-bg.png';
+import DepartmentPathway from '../components/DepartmentPathway';
+import { mechanicalMembers } from '../data/mechanicalMembers';
 
 function Mechanical() {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ function Mechanical() {
         <img src={mechanicalBg} alt="Mechanical Background" />
       </div>
 
-      {/* Back Button */}
+      {/* Back to original */}
       <button className="back-button" onClick={() => navigate('/robo-hi')}>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -25,20 +27,20 @@ function Mechanical() {
       </button>
 
       {/* Main Content */}
-      <div className="mechanical-content">
-        {/* Top Section - Title */}
-        <div className="header-section">
-          <div className="title-badge">
-            <h1 className="mechanical-title">MECHANICAL AND DESIGN</h1>
+      <div className="department-layout">
+        {/* Left Side - Department Info */}
+        <div className="department-info">
+          {/* Top Section - Title */}
+          <div className="header-section">
+            <div className="title-badge">
+              <h1 className="mechanical-title">MECHANICAL AND DESIGN</h1>
+            </div>
+            <p className="mechanical-subtitle">
+              Concepts are turned into concrete reality by the Mechanical & Design division. Every Genesis bot is given its shape, soul, and strength by us, from structure to aesthetics.
+            </p>
           </div>
-          <p className="mechanical-subtitle">
-            Concepts are turned into concrete reality by the Mechanical & Design division. Every Genesis bot is given its shape, soul, and strength by us, from structure to aesthetics.
-          </p>
-        </div>
 
-        {/* Bottom Section - Card Left, Robot Right */}
-        <div className="bottom-section">
-          {/* Left - Who Are We Card */}
+          {/* Bottom Section - Who Are We Card */}
           <div className="who-card">
             <h2 className="who-title">WHO ARE WE ?</h2>
             
@@ -52,11 +54,11 @@ function Mechanical() {
               <p>Our guiding principles are straightforward: Never sacrifice creativity, build with purpose, and design with empathy.</p>
             </div>
           </div>
+        </div>
 
-          {/* Right - Robot CAD Graphic */}
-          <div className="robot-graphic">
-            {/* Robot illustration will be here */}
-          </div>
+        {/* Right Side - Pathway Component */}
+        <div className="department-pathway-container">
+          <DepartmentPathway members={mechanicalMembers} />
         </div>
       </div>
     </div>

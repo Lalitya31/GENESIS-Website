@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SoftwareAI.css';
 import aiBg from '../assets/images/ai-bg.png';
+import DepartmentPathway from '../components/DepartmentPathway';
+import { softwareMembers } from '../data/softwareMembers';
 
 function SoftwareAI() {
   const navigate = useNavigate();
@@ -25,20 +27,20 @@ function SoftwareAI() {
       </button>
 
       {/* Main Content */}
-      <div className="software-ai-content">
-        {/* Top Section - Title */}
-        <div className="header-section">
-          <div className="title-badge">
-            <h1 className="software-ai-title">SOFTWARE AND AI</h1>
+      <div className="department-layout">
+        {/* Left Side - Department Info */}
+        <div className="department-info">
+          {/* Top Section - Title */}
+          <div className="header-section">
+            <div className="title-badge">
+              <h1 className="software-ai-title">SOFTWARE AND AI</h1>
+            </div>
+            <p className="software-ai-subtitle">
+              Every robot we create is programmed with accuracy, perception, and purpose by the Software & AI division, which functions as Genesis' brain.
+            </p>
           </div>
-          <p className="software-ai-subtitle">
-            Every robot we create is programmed with accuracy, perception, and purpose by the Software & AI division, which functions as Genesis' brain.
-          </p>
-        </div>
 
-        {/* Bottom Section - Card Left, Brain Right */}
-        <div className="bottom-section">
-          {/* Left - Who Are We Card */}
+          {/* Who Are We Card */}
           <div className="who-card">
             <h2 className="who-title">WHO ARE WE ?</h2>
             
@@ -54,11 +56,11 @@ function SoftwareAI() {
               <p>We think that code is narrative for machines, not just syntax.</p>
             </div>
           </div>
+        </div>
 
-          {/* Right - AI Brain Graphic (background shows through) */}
-          <div className="ai-brain-graphic">
-            {/* Background AI brain will be visible here */}
-          </div>
+        {/* Right Side - Pathway Component */}
+        <div className="department-pathway-container">
+          <DepartmentPathway members={softwareMembers} />
         </div>
       </div>
     </div>

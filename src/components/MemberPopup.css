@@ -1,0 +1,151 @@
+/* Inline popup - appears beside the stage */
+.member-popup-inline {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 1, 24, 0.98);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(139, 92, 246, 0.8);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 300px;
+  z-index: 1000;
+  box-shadow: 
+    0 10px 40px rgba(139, 92, 246, 0.5),
+    0 0 30px rgba(139, 92, 246, 0.3),
+    0 0 0 1px rgba(139, 92, 246, 0.2);
+  animation: popupSlide 0.3s ease;
+  pointer-events: auto;
+}
+
+/* Position popup on opposite side of the stage */
+.member-popup-inline.left {
+  left: calc(100% + 1rem);
+}
+
+.member-popup-inline.right {
+  right: calc(100% + 1rem);
+}
+
+@keyframes popupSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* Close button */
+.popup-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  font-size: 18px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-close:hover {
+  background: #8b5cf6;
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+/* Content */
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.popup-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.popup-role {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #a78bfa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.popup-quote {
+  margin: 0.5rem 0 0 0;
+  padding: 1rem;
+  background: rgba(139, 92, 246, 0.1);
+  border-left: 3px solid #8b5cf6;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e9d5ff;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .member-popup-inline {
+    width: 260px;
+    padding: 1.25rem;
+  }
+
+  .popup-name {
+    font-size: 1.1rem;
+  }
+
+  .popup-quote {
+    font-size: 0.85rem;
+    padding: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .member-popup-inline {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 350px;
+    z-index: 1000;
+  }
+
+  .member-popup-inline.left,
+  .member-popup-inline.right {
+    left: 50%;
+    right: auto;
+  }
+
+  @keyframes popupSlide {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+}

@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Electrical.css';
 import electricalBg from '../assets/images/electrical-bg.png';
+import DepartmentPathway from '../components/DepartmentPathway';
+import { electricalMembers } from '../data/electricalMembers';
 
 function Electrical() {
   const navigate = useNavigate();
@@ -25,20 +27,20 @@ function Electrical() {
       </button>
 
       {/* Main Content */}
-      <div className="electrical-content">
-        {/* Top Section - Title */}
-        <div className="header-section">
-          <div className="title-badge">
-            <h1 className="electrical-title">ELECTRICAL AND CONTROL SYSTEMS</h1>
+      <div className="department-layout">
+        {/* Left Side - Department Info */}
+        <div className="department-info">
+          {/* Top Section - Title */}
+          <div className="header-section">
+            <div className="title-badge">
+              <h1 className="electrical-title">ELECTRICAL AND CONTROL SYSTEMS</h1>
+            </div>
+            <p className="electrical-subtitle">
+              Every action our robots take is powered, connected, and managed by the Electrical & Control Systems division, which keeps Genesis running.
+            </p>
           </div>
-          <p className="electrical-subtitle">
-            Every action our robots take is powered, connected, and managed by the Electrical & Control Systems division, which keeps Genesis running.
-          </p>
-        </div>
 
-        {/* Bottom Section - Card Left, Circuit Right */}
-        <div className="bottom-section">
-          {/* Left - Who Are We Card */}
+          {/* Who Are We Card */}
           <div className="who-card">
             <h2 className="who-title">WHO ARE WE ?</h2>
             
@@ -52,11 +54,11 @@ function Electrical() {
               <p>The best electrical systems, in our opinion, are smooth, effective, and brimming with energy that flows in all directions, much like a team.</p>
             </div>
           </div>
+        </div>
 
-          {/* Right - Circuit Graphic (background image will show through) */}
-          <div className="circuit-graphic">
-            {/* Circuit visualization from background */}
-          </div>
+        {/* Right Side - Pathway Component */}
+        <div className="department-pathway-container">
+          <DepartmentPathway members={electricalMembers} />
         </div>
       </div>
     </div>
