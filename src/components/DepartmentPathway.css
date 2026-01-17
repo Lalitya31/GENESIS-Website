@@ -7,36 +7,32 @@
 
 .pathway-container {
   position: relative;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 2rem;
   overflow: visible;
 }
 
-/* Vertical line running through the center */
+/* Curved SVG path connecting all stages - Spinal cord style */
 .pathway-line {
   position: absolute;
-  left: 50%;
+  left: 0;
   top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(
-    to bottom,
-    rgba(139, 92, 246, 0.2),
-    rgba(139, 92, 246, 0.6),
-    rgba(139, 92, 246, 0.2)
-  );
-  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
   z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8)) 
+          drop-shadow(0 0 40px rgba(139, 92, 246, 0.6))
+          drop-shadow(0 0 60px rgba(139, 92, 246, 0.4));
 }
 
 .pathway-stages {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  padding: 2rem 0;
+  width: 100%;
+  height: 100%;
   overflow: visible;
 }
 

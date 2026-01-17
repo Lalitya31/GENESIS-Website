@@ -2,147 +2,103 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 100%;
-  margin-bottom: 1rem;
   overflow: visible;
 }
 
-/* Alternating positioning */
-.pathway-stage-wrapper.left {
-  justify-content: flex-end;
-  padding-right: calc(50% + 2rem);
-}
-
-.pathway-stage-wrapper.right {
-  justify-content: flex-start;
-  padding-left: calc(50% + 2rem);
+/* Positioned on the curved path */
+.pathway-stage-wrapper.on-path {
+  position: absolute;
+  z-index: 10;
 }
 
 /* Stage button */
 .pathway-stage {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  background: #ffffff;
-  border: 2px solid rgba(139, 92, 246, 0.3);
-  border-radius: 16px;
-  padding: 0.75rem 1.25rem;
+  justify-content: center;
+  gap: 0.3rem;
+  background: #000000;
+  border: 1px solid #8b5cf6;
+  border-radius: 20px;
+  padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  max-width: 220px;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6),
+              0 0 40px rgba(139, 92, 246, 0.4),
+              0 4px 15px rgba(0, 0, 0, 0.3);
+  min-width: 140px;
+  white-space: nowrap;
+}
+
+/* Disable cursor for members without quotes */
+.pathway-stage.no-quote {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.pathway-stage.no-quote:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6),
+              0 0 40px rgba(139, 92, 246, 0.4),
+              0 4px 15px rgba(0, 0, 0, 0.3);
+  transform: none;
+  border-color: #8b5cf6;
 }
 
 .pathway-stage:hover {
-  border-color: rgba(139, 92, 246, 0.6);
-  box-shadow: 
-    0 4px 16px rgba(139, 92, 246, 0.2),
-    0 0 20px rgba(139, 92, 246, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8),
+              0 0 50px rgba(139, 92, 246, 0.6),
+              0 4px 20px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+  border-color: #a78bfa;
 }
 
 .pathway-stage.active {
-  border-color: #8b5cf6;
-  background: linear-gradient(135deg, #ffffff 0%, #f3f0ff 100%);
-  box-shadow: 
-    0 6px 20px rgba(139, 92, 246, 0.3),
-    0 0 30px rgba(139, 92, 246, 0.15);
+  background: #0a0a0a;
+  border-color: #a78bfa;
+  box-shadow: 0 0 35px rgba(139, 92, 246, 0.9),
+              0 0 60px rgba(139, 92, 246, 0.7),
+              0 0 80px rgba(139, 92, 246, 0.5),
+              0 4px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Node connecting to the line */
-.stage-node {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.pathway-stage-wrapper.left .stage-node {
-  right: -2rem;
-  transform: translateX(50%);
-}
-
-.pathway-stage-wrapper.right .stage-node {
-  left: -2rem;
-  transform: translateX(-50%);
-}
-
-.stage-dot {
-  width: 16px;
-  height: 16px;
-  background: #8b5cf6;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
-  transition: all 0.3s ease;
-}
-
-.pathway-stage:hover .stage-dot {
-  width: 20px;
-  height: 20px;
-  box-shadow: 0 0 16px rgba(139, 92, 246, 0.6);
-}
-
-.pathway-stage.active .stage-dot {
-  width: 22px;
-  height: 22px;
-  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
-}
 
 /* Content */
 .stage-content {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  text-align: left;
+  gap: 0.15rem;
+  text-align: center;
 }
 
 .stage-name {
   margin: 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #1f2937;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
   line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .stage-role {
-  font-size: 0.75rem;
-  color: #6b7280;
+  font-size: 0.7rem;
+  color: #f3e8ff;
   font-weight: 500;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .pathway-stage-wrapper.left {
-    padding-right: calc(50% + 1.5rem);
-  }
-  
-  .pathway-stage-wrapper.right {
-    padding-left: calc(50% + 1.5rem);
-  }
-
   .pathway-stage {
-    max-width: 180px;
-    padding: 0.6rem 1rem;
+    min-width: 120px;
+    padding: 0.6rem 1.2rem;
   }
 
   .stage-name {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .stage-role {
-    font-size: 0.7rem;
-  }
-
-  .pathway-stage-wrapper.left .stage-node {
-    right: -1.5rem;
-  }
-
-  .pathway-stage-wrapper.right .stage-node {
-    left: -1.5rem;
+    font-size: 0.65rem;
   }
 }

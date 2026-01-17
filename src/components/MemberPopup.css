@@ -8,7 +8,7 @@
   border: 2px solid rgba(139, 92, 246, 0.8);
   border-radius: 16px;
   padding: 1.5rem;
-  width: 300px;
+  width: 280px;
   z-index: 1000;
   box-shadow: 
     0 10px 40px rgba(139, 92, 246, 0.5),
@@ -18,13 +18,13 @@
   pointer-events: auto;
 }
 
-/* Position popup on opposite side of the stage */
+/* Position popup directly adjacent to the name */
 .member-popup-inline.left {
-  left: calc(100% + 1rem);
+  left: calc(100% + 0.5rem);
 }
 
 .member-popup-inline.right {
-  right: calc(100% + 1rem);
+  right: calc(100% + 0.5rem);
 }
 
 @keyframes popupSlide {

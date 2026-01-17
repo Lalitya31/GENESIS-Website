@@ -13,31 +13,38 @@ import './PathwayStage.css';
  * @param {boolean} showPopup - Whether to show popup for this stage
  * @param {Function} onClosePopup - Close popup handler
  */
-const PathwayStage = ({ member, index, isActive, onClick, showPopup, onClosePopup }) => {
+const PathwayStage = ({ member, index, position, isActive, onClick, showPopup, onClosePopup }) => {
   const stageRef = useRef(null);
-  // Alternate left/right positioning
-  const position = index % 2 === 0 ? 'left' : 'right';
+  // All popups open on left side
+  const popupSide = 'left';
   
   const handleClick = () => {
     if (stageRef.current) {
       const rect = stageRef.current.getBoundingClientRect();
       onClick(member.id, {
         top: rect.top,
-        side: position === 'left' ? 'left' : 'right'
+        side: popupSide
       });
     }
   };
   
+  const hasQuote = member.quote && member.quote.trim() !== '';
+  
   return (
-    <div className={`pathway-stage-wrapper ${position}`} ref={stageRef}>
+    <div 
+      className="pathway-stage-wrapper on-path" 
+      ref={stageRef}
+      style={{
+        left: position.x,
+        top: position.y,
+        transform: 'translate(-50%, -50%)'
+      }}
+    >
       <button
-        className={`pathway-stage ${isActive ? 'active' : ''}`}
+        className={`pathway-stage ${isActive ? 'active' : ''} ${!hasQuote ? 'no-quote' : ''}`}
         onClick={handleClick}
-        aria-label={`View ${member.name}'s profile`}
+        aria-label={hasQuote ? `View ${member.name}'s profile` : member.name}
       >
-        <div className="stage-node">
-          <div className="stage-dot" />
-        </div>
         <div className="stage-content">
           <h3 className="stage-name">{member.name}</h3>
           {member.role && (
@@ -46,11 +53,11 @@ const PathwayStage = ({ member, index, isActive, onClick, showPopup, onClosePopu
         </div>
       </button>
       
-      {showPopup && (
+      {showPopup && hasQuote && (
         <MemberPopup
           member={member}
           onClose={onClosePopup}
-          position={position}
+          position={popupSide}
         />
       )}
     </div>
