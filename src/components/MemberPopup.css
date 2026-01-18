@@ -20,11 +20,11 @@
 
 /* Position popup directly adjacent to the name */
 .member-popup-inline.left {
-  left: calc(100% + 0.5rem);
+  right: calc(100% + 0.5rem);
 }
 
 .member-popup-inline.right {
-  right: calc(100% + 0.5rem);
+  left: calc(100% + 0.5rem);
 }
 
 @keyframes popupSlide {

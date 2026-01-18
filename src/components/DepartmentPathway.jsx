@@ -44,7 +44,7 @@ const DepartmentPathway = ({ members = [] }) => {
     const y = index * stageSpacing + 60; // Vertical position
     // Alternate left and right with smooth wave
     const xOffset = Math.sin(index * 0.8) * amplitude;
-    const x = 50 + xOffset; // X position as percentage
+    const x = 30 + xOffset; // X position as percentage (moved left for popup space)
     
     return { x: `${x}%`, y: `${y}px` };
   };
@@ -56,17 +56,17 @@ const DepartmentPathway = ({ members = [] }) => {
     const stageSpacing = 120;
     const amplitude = 25;
     
-    let path = 'M 50 20'; // Start at top
+    let path = 'M 30 20'; // Start at top (moved left for popup space)
     
     members.forEach((member, index) => {
       const y = index * stageSpacing + 60;
-      const x = 50 + Math.sin(index * 0.8) * amplitude;
+      const x = 30 + Math.sin(index * 0.8) * amplitude;
       
       if (index === 0) {
         path += ` L ${x} ${y}`;
       } else {
         const prevY = (index - 1) * stageSpacing + 60;
-        const prevX = 50 + Math.sin((index - 1) * 0.8) * amplitude;
+        const prevX = 30 + Math.sin((index - 1) * 0.8) * amplitude;
         const controlY = (y + prevY) / 2;
         const controlX = (x + prevX) / 2;
         

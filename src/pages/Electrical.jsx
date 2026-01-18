@@ -28,37 +28,40 @@ function Electrical() {
 
       {/* Main Content */}
       <div className="department-layout">
-        {/* Left Side - Department Info */}
-        <div className="department-info">
-          {/* Top Section - Title */}
-          <div className="header-section">
-            <div className="title-badge">
-              <h1 className="electrical-title">ELECTRICAL AND CONTROL SYSTEMS</h1>
-            </div>
-            <p className="electrical-subtitle">
-              Every action our robots take is powered, connected, and managed by the Electrical & Control Systems division, which keeps Genesis running.
-            </p>
+        {/* Header Section - Full Width */}
+        <div className="header-section">
+          <div className="title-badge">
+            <h1 className="electrical-title">ELECTRICAL AND CONTROL SYSTEMS</h1>
           </div>
-
-          {/* Who Are We Card */}
-          <div className="who-card">
-            <h2 className="who-title">WHO ARE WE ?</h2>
-            
-            <div className="who-content">
-              <p>Every Genesis robot's heartbeat is powered by us.</p>
-              
-              <p>Our team works on everything from power management and control systems to PCB design and sensor integration.</p>
-              
-              <p>We ensure that every motor turns, every sensor communicates, and every spark is accurate and safe.</p>
-              
-              <p>The best electrical systems, in our opinion, are smooth, effective, and brimming with energy that flows in all directions, much like a team.</p>
-            </div>
-          </div>
+          <p className="electrical-subtitle">
+            Every action our robots take is powered, connected, and managed by the Electrical & Control Systems division, which keeps Genesis running.
+          </p>
         </div>
 
-        {/* Right Side - Pathway Component */}
-        <div className="department-pathway-container">
-          <DepartmentPathway members={electricalMembers} />
+        {/* Content Row - Info and Pathway Side by Side */}
+        <div className="department-content-row">
+          {/* Left Side - Department Info */}
+          <div className="department-info">
+            {/* Who Are We Card */}
+            <div className="who-card">
+              <h2 className="who-title">WHO ARE WE ?</h2>
+              
+              <div className="who-content">
+                <p>Every Genesis robot's heartbeat is powered by us.</p>
+                
+                <p>Our team works on everything from power management and control systems to PCB design and sensor integration.</p>
+                
+                <p>We ensure that every motor turns, every sensor communicates, and every spark is accurate and safe.</p>
+                
+                <p>The best electrical systems, in our opinion, are smooth, effective, and brimming with energy that flows in all directions, much like a team.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Pathway Component */}
+          <div className="department-pathway-container">
+            <DepartmentPathway members={electricalMembers} />
+          </div>
         </div>
       </div>
     </div>

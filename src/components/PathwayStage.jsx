@@ -15,8 +15,8 @@ import './PathwayStage.css';
  */
 const PathwayStage = ({ member, index, position, isActive, onClick, showPopup, onClosePopup }) => {
   const stageRef = useRef(null);
-  // All popups open on left side
-  const popupSide = 'left';
+  // All popups open on right side
+  const popupSide = 'right';
   
   const handleClick = () => {
     if (stageRef.current) {

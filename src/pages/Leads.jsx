@@ -28,39 +28,42 @@ function Leads() {
 
       {/* Main Content */}
       <div className="department-layout">
-        {/* Left Side - Department Info */}
-        <div className="department-info">
-          {/* Top Section - Title */}
-          <div className="header-section">
-            <div className="title-badge">
-              <h1 className="leads-title">LEADS</h1>
-            </div>
-            <p className="leads-subtitle">
-              The Leads are the connectors of Genesis — bridging ideas, people, and departments with empathy and energy.
-            </p>
+        {/* Header Section - Full Width */}
+        <div className="header-section">
+          <div className="title-badge">
+            <h1 className="leads-title">LEADS</h1>
           </div>
-
-          {/* Who Are We Card */}
-          <div className="who-card">
-            <h2 className="who-title">WHO ARE WE ?</h2>
-            
-            <div className="who-content">
-              <p>Leadership in Genesis is about harmony rather than hierarchy.</p>
-              
-              <p>We think that every member has a voice, that every success is shared, and that every idea counts.</p>
-              
-              <p>The Leads division merely maintains the rhythm by coordinating objectives, eliminating obstacles, and ensuring</p>
-              
-              <p>that innovation is allowed to freely circulate among all departments.</p>
-              
-              <p>Together, we grow, laugh, and learn—side by side.</p>
-            </div>
-          </div>
+          <p className="leads-subtitle">
+            The Leads are the connectors of Genesis — bridging ideas, people, and departments with empathy and energy.
+          </p>
         </div>
 
-        {/* Right Side - Pathway Component */}
-        <div className="department-pathway-container">
-          <DepartmentPathway members={leadsMembers} />
+        {/* Content Row - Info and Pathway Side by Side */}
+        <div className="department-content-row">
+          {/* Left Side - Department Info */}
+          <div className="department-info">
+            {/* Who Are We Card */}
+            <div className="who-card">
+              <h2 className="who-title">WHO ARE WE ?</h2>
+              
+              <div className="who-content">
+                <p>Leadership in Genesis is about harmony rather than hierarchy.</p>
+                
+                <p>We think that every member has a voice, that every success is shared, and that every idea counts.</p>
+                
+                <p>The Leads division merely maintains the rhythm by coordinating objectives, eliminating obstacles, and ensuring</p>
+                
+                <p>that innovation is allowed to freely circulate among all departments.</p>
+                
+                <p>Together, we grow, laugh, and learn—side by side.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Pathway Component */}
+          <div className="department-pathway-container">
+            <DepartmentPathway members={leadsMembers} />
+          </div>
         </div>
       </div>
     </div>

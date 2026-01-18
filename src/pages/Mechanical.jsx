@@ -28,37 +28,40 @@ function Mechanical() {
 
       {/* Main Content */}
       <div className="department-layout">
-        {/* Left Side - Department Info */}
-        <div className="department-info">
-          {/* Top Section - Title */}
-          <div className="header-section">
-            <div className="title-badge">
-              <h1 className="mechanical-title">MECHANICAL AND DESIGN</h1>
-            </div>
-            <p className="mechanical-subtitle">
-              Concepts are turned into concrete reality by the Mechanical & Design division. Every Genesis bot is given its shape, soul, and strength by us, from structure to aesthetics.
-            </p>
+        {/* Header Section - Full Width */}
+        <div className="header-section">
+          <div className="title-badge">
+            <h1 className="mechanical-title">MECHANICAL AND DESIGN</h1>
           </div>
-
-          {/* Bottom Section - Who Are We Card */}
-          <div className="who-card">
-            <h2 className="who-title">WHO ARE WE ?</h2>
-            
-            <div className="who-content">
-              <p>We are the brains and hands that make the motion happen.</p>
-              
-              <p>In order to create frames, joints, and mechanisms that transform abstract concepts into robots that move, lift, and carry out specific tasks, the Mechanical & Design team combines engineering and creativity.</p>
-              
-              <p>Each nut, gear, and CAD model is a tiny fragment of a larger narrative that we create together.</p>
-              
-              <p>Our guiding principles are straightforward: Never sacrifice creativity, build with purpose, and design with empathy.</p>
-            </div>
-          </div>
+          <p className="mechanical-subtitle">
+            Concepts are turned into concrete reality by the Mechanical & Design division. Every Genesis bot is given its shape, soul, and strength by us, from structure to aesthetics.
+          </p>
         </div>
 
-        {/* Right Side - Pathway Component */}
-        <div className="department-pathway-container">
-          <DepartmentPathway members={mechanicalMembers} />
+        {/* Content Row - Info and Pathway Side by Side */}
+        <div className="department-content-row">
+          {/* Left Side - Department Info */}
+          <div className="department-info">
+            {/* Who Are We Card */}
+            <div className="who-card">
+              <h2 className="who-title">WHO ARE WE ?</h2>
+              
+              <div className="who-content">
+                <p>We are the brains and hands that make the motion happen.</p>
+                
+                <p>In order to create frames, joints, and mechanisms that transform abstract concepts into robots that move, lift, and carry out specific tasks, the Mechanical & Design team combines engineering and creativity.</p>
+                
+                <p>Each nut, gear, and CAD model is a tiny fragment of a larger narrative that we create together.</p>
+                
+                <p>Our guiding principles are straightforward: Never sacrifice creativity, build with purpose, and design with empathy.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Pathway Component */}
+          <div className="department-pathway-container">
+            <DepartmentPathway members={mechanicalMembers} />
+          </div>
         </div>
       </div>
     </div>
