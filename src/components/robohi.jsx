@@ -236,41 +236,80 @@ function Robohi() {
         </div>
       </div>
 
-      {/* Departments Section */}
+      {/* Departments Section - Vertical Neural Flow */}
       <div className="departments-section" ref={departmentsRef}>
-        <h2 className="departments-title">Brains behind the Brilliant Bots</h2>
+        <h2 className="departments-title">Engineering the Intelligence</h2>
         
-        <div className="departments-grid">
-          <div className="dept-card" onClick={() => navigate('/team/mechanical')}>
-            <div className="dept-image">
-              <img src={mechanicalImg} alt="Mechanical" />
+        <div className="neural-spine">
+          {/* Leads Node */}
+          <div className="neural-node" onClick={() => navigate('/team/leads')}>
+            <div className="node-connector top"></div>
+            <div className="node-glow">
+              <div className="node-ring ring-1"></div>
+              <div className="node-ring ring-2"></div>
+              <div className="node-ring ring-3"></div>
+              <div className="node-core">
+                <img src={leadsImg} alt="Leads" className="node-icon" />
+              </div>
             </div>
-            <h3>Mechanical & Design</h3>
-            <p>Building the physical foundation</p>
+            <div className="node-content">
+              <h3 className="node-title">Leads</h3>
+              <p className="node-description">Guiding the vision forward</p>
+            </div>
+            <div className="node-connector bottom"></div>
           </div>
 
-          <div className="dept-card" onClick={() => navigate('/team/electrical')}>
-            <div className="dept-image">
-              <img src={electricalImg} alt="Electrical" />
+          {/* Mechanical & Design Node */}
+          <div className="neural-node" onClick={() => navigate('/team/mechanical')}>
+            <div className="node-connector top"></div>
+            <div className="node-glow">
+              <div className="node-ring ring-1"></div>
+              <div className="node-ring ring-2"></div>
+              <div className="node-ring ring-3"></div>
+              <div className="node-core">
+                <img src={mechanicalImg} alt="Mechanical" className="node-icon" />
+              </div>
             </div>
-            <h3>Electrical & Controls</h3>
-            <p>Powering innovation with precision</p>
+            <div className="node-content">
+              <h3 className="node-title">Mechanical & Design</h3>
+              <p className="node-description">Building the physical foundation</p>
+            </div>
+            <div className="node-connector bottom"></div>
           </div>
 
-          <div className="dept-card" onClick={() => navigate('/team/leads')}>
-            <div className="dept-image">
-              <img src={leadsImg} alt="Leads" />
+          {/* Electrical & Controls Node */}
+          <div className="neural-node" onClick={() => navigate('/team/electrical')}>
+            <div className="node-connector top"></div>
+            <div className="node-glow">
+              <div className="node-ring ring-1"></div>
+              <div className="node-ring ring-2"></div>
+              <div className="node-ring ring-3"></div>
+              <div className="node-core">
+                <img src={electricalImg} alt="Electrical" className="node-icon" />
+              </div>
             </div>
-            <h3>Leads</h3>
-            <p>Guiding the vision forward</p>
+            <div className="node-content">
+              <h3 className="node-title">Electrical & Controls</h3>
+              <p className="node-description">Powering innovation with precision</p>
+            </div>
+            <div className="node-connector bottom"></div>
           </div>
 
-          <div className="dept-card" onClick={() => navigate('/team/software')}>
-            <div className="dept-image">
-              <img src={softwareImg} alt="Software" />
+          {/* Software & AI Node */}
+          <div className="neural-node last-node" onClick={() => navigate('/team/software')}>
+            <div className="node-connector top"></div>
+            <div className="node-glow">
+              <div className="node-ring ring-1"></div>
+              <div className="node-ring ring-2"></div>
+              <div className="node-ring ring-3"></div>
+              <div className="node-core">
+                <img src={softwareImg} alt="Software" className="node-icon" />
+              </div>
             </div>
-            <h3>Software & A.I.</h3>
-            <p>Intelligence meets automation</p>
+            <div className="node-content">
+              <h3 className="node-title">Software & A.I.</h3>
+              <p className="node-description">Intelligence meets automation</p>
+            </div>
           </div>
         </div>
       </div>
@@ -282,9 +321,8 @@ function Robohi() {
           <p className="contact-subtitle">Join the Innovation Journey</p>
 
           <div className="contact-grid">
-            {/* Email Card with 15 Particles */}
+            {/* Email Card - Primary */}
             <a href="mailto:genesisatvitc@gmail.com" className="contact-card email-card">
-              <div className="card-glow"></div>
               <div className="icon-wrapper">
                 <svg className="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -294,17 +332,10 @@ function Robohi() {
               <h3>Email</h3>
               <p>genesisatvitc@gmail.com</p>
               <div className="hover-text">Drop us a message</div>
-              
-              <div className="card-particles">
-                {[...Array(15)].map((_, i) => (
-                  <div key={i} className="card-particle"></div>
-                ))}
-              </div>
             </a>
 
-            {/* LinkedIn Card with 15 Particles */}
+            {/* LinkedIn Card - Secondary */}
             <a href="https://linkedin.com/company/genesisvitc" target="_blank" rel="noopener noreferrer" className="contact-card linkedin-card">
-              <div className="card-glow"></div>
               <div className="icon-wrapper">
                 <svg className="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -315,17 +346,10 @@ function Robohi() {
               <h3>LinkedIn</h3>
               <p>@genesisvitc</p>
               <div className="hover-text">Connect professionally</div>
-              
-              <div className="card-particles">
-                {[...Array(15)].map((_, i) => (
-                  <div key={i} className="card-particle"></div>
-                ))}
-              </div>
             </a>
 
-            {/* Instagram Card with 15 Particles */}
+            {/* Instagram Card - Tertiary */}
             <a href="https://www.instagram.com/genesis.vitc" target="_blank" rel="noopener noreferrer" className="contact-card instagram-card">
-              <div className="card-glow"></div>
               <div className="icon-wrapper">
                 <svg className="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -336,12 +360,6 @@ function Robohi() {
               <h3>Instagram</h3>
               <p>@genesis.vitc</p>
               <div className="hover-text">Follow our journey</div>
-              
-              <div className="card-particles">
-                {[...Array(15)].map((_, i) => (
-                  <div key={i} className="card-particle"></div>
-                ))}
-              </div>
             </a>
           </div>
         </div>
