@@ -40,7 +40,7 @@ export const leadsMembers = [
     id: 7,
     name: "Lalitya",
     role: "Project Management Lead",
-    quote: "I’ve learned that being a multifaceted genius isn’t about talent, it’s about choosing what gets your validation today."
+    quote: "Being a multifaceted genius isn’t about talent, it’s about choosing what gets your validation today."
   },
   {
     id: 8,

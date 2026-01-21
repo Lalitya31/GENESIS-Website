@@ -44,7 +44,7 @@ export const mechanicalMembers = [
   {
     id: 9,
     name: "N Harissh Shanmuganathan",
-    quote: ""
+    quote: "Blunt coz god rolled me that way."
   },
   {
     id: 10,

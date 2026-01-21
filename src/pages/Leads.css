@@ -17,8 +17,8 @@
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(168, 85, 247, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(168, 85, 247, 0.068) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.068) 1px, transparent 1px);
   background-size: 80px 80px;
   z-index: 1;
   pointer-events: none;
@@ -26,8 +26,8 @@
 }
 
 @keyframes gridPulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
+  0%, 100% { opacity: 0.255; }
+  50% { opacity: 0.51; }
 }
 
 /* Background Image */
@@ -44,7 +44,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6;
+  opacity: 0.51;
 }
 
 /* Back Button */
@@ -96,24 +96,25 @@
 /* Content Below Header */
 .department-content-row {
   display: flex;
-  gap: 3rem;
+  gap: 1.5rem;
   flex: 1;
 }
 
 .department-info {
-  flex: 0 0 45%;
-  max-width: 600px;
+  flex: 0 0 30%;
+  max-width: 350px;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .department-pathway-container {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 2rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
   overflow: visible;
   position: relative;
 }
@@ -193,11 +194,11 @@
 
 /* Who Are We Card - Left Side */
 .who-card {
-  flex: 0 0 500px;
+  flex: 0 0 350px;
   background: rgba(168, 85, 247, 0.1);
   border: 2px solid rgba(168, 85, 247, 0.3);
-  border-radius: 30px;
-  padding: 40px;
+  border-radius: 20px;
+  padding: 25px;
   backdrop-filter: blur(20px);
   box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
   transition: all 0.3s ease;
@@ -211,26 +212,26 @@
 
 .who-title {
   font-family: 'Orbitron', sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: #a855f7;
-  letter-spacing: 0.2em;
-  margin-bottom: 25px;
+  letter-spacing: 0.15em;
+  margin-bottom: 18px;
   text-align: left;
   text-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
 }
 
 .who-content {
   font-family: 'Rajdhani', sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #e9d5ff;
-  line-height: 1.7;
+  line-height: 1.6;
   letter-spacing: 0.02em;
 }
 
 .who-content p {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 /* Magic Circle Graphic - Right Side (transparent to show background) */

@@ -17,16 +17,14 @@
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
-  background: #000000;
-  border: 1px solid #8b5cf6;
-  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6),
-              0 0 40px rgba(139, 92, 246, 0.4),
-              0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
   min-width: 140px;
   white-space: nowrap;
 }
@@ -34,32 +32,27 @@
 /* Disable cursor for members without quotes */
 .pathway-stage.no-quote {
   cursor: default;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .pathway-stage.no-quote:hover {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6),
-              0 0 40px rgba(139, 92, 246, 0.4),
-              0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
   transform: none;
-  border-color: #8b5cf6;
+  border-color: rgba(139, 92, 246, 0.3);
 }
 
 .pathway-stage:hover {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8),
-              0 0 50px rgba(139, 92, 246, 0.6),
-              0 4px 20px rgba(0, 0, 0, 0.4);
-  transform: scale(1.05);
-  border-color: #a78bfa;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  transform: scale(1.03);
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .pathway-stage.active {
-  background: #0a0a0a;
-  border-color: #a78bfa;
-  box-shadow: 0 0 35px rgba(139, 92, 246, 0.9),
-              0 0 60px rgba(139, 92, 246, 0.7),
-              0 0 80px rgba(139, 92, 246, 0.5),
-              0 4px 25px rgba(0, 0, 0, 0.5);
+  background: rgba(10, 10, 10, 0.95);
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+  transform: scale(1.08);
 }
 
 

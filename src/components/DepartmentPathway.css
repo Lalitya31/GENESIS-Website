@@ -1,48 +1,304 @@
+/* Split-Canvas Reveal - Left Static, Right Reactive */
 .department-pathway {
   position: relative;
   width: 100%;
-  min-height: 100vh;
   padding: 2rem 0;
 }
 
-.pathway-container {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  overflow: visible;
-}
-
-/* Curved SVG path connecting all stages - Spinal cord style */
-.pathway-line {
+/* Ghost typography layer - subtle, non-intrusive */
+.department-pathway::before {
+  content: 'GENESIS';
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: rgba(139, 92, 246, 0.06);
   pointer-events: none;
-  overflow: visible;
-  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8)) 
-          drop-shadow(0 0 40px rgba(139, 92, 246, 0.6))
-          drop-shadow(0 0 60px rgba(139, 92, 246, 0.4));
+  z-index: 0;
+  user-select: none;
+  text-shadow: 0 0 40px rgba(139, 92, 246, 0.1);
 }
 
-.pathway-stages {
+/* Split canvas container */
+.split-canvas {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 0.75rem;
+  min-height: 60vh;
+  padding: 0 1rem;
   position: relative;
   z-index: 1;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
 }
 
-/* Responsive adjustments */
+/* LEFT: Static Name Field - with signal rail */
+.name-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-right: 0.5rem;
+  padding-left: 1.5rem;
+  border-right: 1px solid rgba(139, 92, 246, 0.15);
+  position: relative;
+}
+
+/* Shared vertical signal rail - subtle, minimal */
+.name-field::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(139, 92, 246, 0.4) 10%,
+    rgba(139, 92, 246, 0.5) 50%,
+    rgba(139, 92, 246, 0.4) 90%,
+    transparent 100%
+  );
+  opacity: 1;
+  box-shadow: 0 0 4px rgba(139, 92, 246, 0.3);
+}
+
+/* Name item - with tick notch to signal rail */
+.name-item {
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+  position: relative;
+}
+
+/* Subtle tick/notch connecting to the rail */
+.name-item::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 2px;
+  background: rgba(139, 92, 246, 0.4);
+  opacity: 0.8;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+.name-item:hover::before,
+.name-item.selected::before {
+  width: 10px;
+  background: rgba(139, 92, 246, 0.6);
+  opacity: 1;
+  box-shadow: 0 0 5px rgba(139, 92, 246, 0.4);
+}
+
+.name-item.no-quote {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.name-item.no-quote:hover {
+  border-left-color: transparent;
+}
+
+.name-item:hover {
+  border-left-color: rgba(139, 92, 246, 0.4);
+  padding-left: 1.2rem;
+}
+
+.name-item.selected {
+  border-left-color: rgba(139, 92, 246, 0.8);
+  padding-left: 1.2rem;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+/* Contextual background activation */
+.name-item.selected::after {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.08) 0%,
+    rgba(139, 92, 246, 0.03) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: -1;
+  animation: contextGlow 0.4s ease;
+}
+
+@keyframes contextGlow {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* Name typography */
+.name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.role {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 400;
+  display: block;
+}
+
+/* RIGHT: Reactive Quote Field */
+.quote-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+/* Quote placeholder */
+.quote-placeholder {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+  border:10px;
+}
+
+/* Quote display */
+.quote-display {
+  animation: quoteReveal 0.4s ease;
+  max-width: 500px;
+  border: 2px solid rgba(139, 92, 246, 0.6);
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: rgba(139, 92, 246, 0.04);
+  box-shadow: 
+    0 0 30px rgba(139, 92, 246, 0.3),
+    0 0 60px rgba(139, 92, 246, 0.15),
+    inset 0 0 40px rgba(139, 92, 246, 0.05);
+  position: relative;
+}
+
+@keyframes quoteReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quote-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.quote-role {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  color: #a78bfa;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.quote-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  color: #c7d2fe;
+  font-style: italic;
+  line-height: 1.5;
+  padding-left: 0.75rem;
+  border-left: 2px solid rgba(139, 92, 246, 0.4);
+}
+
+/* Mobile: Stack vertically */
+@media (max-width: 1024px) {
+  .split-canvas {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .name-field {
+    border-right: none;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+    padding-right: 0;
+    padding-bottom: 2rem;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .quote-field {
+    position: static;
+    min-height: 300px;
+    padding: 1.5rem;
+  }
+
+  .quote-name {
+    font-size: 1.5rem;
+  }
+
+  .quote-text {
+    font-size: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .pathway-container {
+  .split-canvas {
     padding: 0 1rem;
   }
-  
-  .pathway-stages {
-    gap: 2rem;
+
+  .name {
+    font-size: 0.95rem;
+  }
+
+  .role {
+    font-size: 0.8rem;
+  }
+
+  .quote-name {
+    font-size: 1.3rem;
+  }
+
+  .quote-role {
+    font-size: 0.9rem;
+  }
+
+  .quote-text {
+    font-size: 0.95rem;
   }
 }

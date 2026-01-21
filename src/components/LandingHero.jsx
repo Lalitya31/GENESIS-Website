@@ -88,16 +88,9 @@ function LandingHero() {
             <p className="contact-text">
               We'd love to discuss partnership opportunities with you.
             </p>
-            <div className="contact-details">
-              <a href="mailto:sponsor@teamgenesis.com" className="contact-link">
-                <span className="contact-icon">✉</span>
-                sponsor@teamgenesis.com
-              </a>
-              <a href="tel:+1234567890" className="contact-link">
-                <span className="contact-icon">📞</span>
-                +1 (234) 567-890
-              </a>
-            </div>
+            <a href="mailto:genesisatvitc@gmail.com" className="contact-link">
+              genesisatvitc@gmail.com
+            </a>
           </div>
         </div>
       </section>
@@ -106,75 +99,9 @@ function LandingHero() {
       <section id="projects" className="section projects-section">
         <div className="section-container">
           <h2 className="section-title">Our Projects</h2>
-          <p className="section-description">
-            Explore our cutting-edge humanoid robotics projects and innovations
+          <p className="projects-placeholder">
+            Projects currently under development
           </p>
-          
-          <div className="projects-grid">
-            <div className="project-card">
-              <div className="project-header">
-                <div className="project-icon">🤖</div>
-                <h3>Genesis Alpha</h3>
-              </div>
-              <p className="project-description">
-                Our flagship humanoid robot featuring advanced bipedal locomotion 
-                and natural human-like movements.
-              </p>
-              <div className="project-tags">
-                <span className="tag">Bipedal</span>
-                <span className="tag">AI-Powered</span>
-                <span className="tag">Autonomous</span>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <div className="project-header">
-                <div className="project-icon">🧠</div>
-                <h3>Neural Interface</h3>
-              </div>
-              <p className="project-description">
-                Advanced AI and machine learning systems enabling intelligent 
-                decision-making and adaptive behavior.
-              </p>
-              <div className="project-tags">
-                <span className="tag">Machine Learning</span>
-                <span className="tag">Computer Vision</span>
-                <span className="tag">NLP</span>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <div className="project-header">
-                <div className="project-icon">⚡</div>
-                <h3>Power Systems</h3>
-              </div>
-              <p className="project-description">
-                Innovative energy management and power distribution for 
-                extended operational capabilities.
-              </p>
-              <div className="project-tags">
-                <span className="tag">Efficient</span>
-                <span className="tag">Sustainable</span>
-                <span className="tag">Long-lasting</span>
-              </div>
-            </div>
-
-            <div className="project-card">
-              <div className="project-header">
-                <div className="project-icon">🔧</div>
-                <h3>Mechanical Design</h3>
-              </div>
-              <p className="project-description">
-                Precision-engineered mechanical systems with biomimetic joint 
-                structures and robust actuators.
-              </p>
-              <div className="project-tags">
-                <span className="tag">Biomimetic</span>
-                <span className="tag">Precision</span>
-                <span className="tag">Durable</span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>

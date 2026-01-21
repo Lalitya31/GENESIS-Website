@@ -327,12 +327,17 @@
 }
 
 .contact-info {
-  background: rgba(168, 85, 247, 0.08);
-  border: 2px solid rgba(168, 85, 247, 0.3);
-  border-radius: 20px;
+  background: rgba(168, 85, 247, 0.05);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 16px;
   padding: 50px;
   text-align: center;
   backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.contact-info:hover {
+  border-color: rgba(168, 85, 247, 0.3);
 }
 
 .contact-info h3 {
@@ -349,106 +354,41 @@
   margin-bottom: 30px;
 }
 
-.contact-details {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
 .contact-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: inline-block;
   font-family: 'Orbitron', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #a855f7;
   text-decoration: none;
-  padding: 12px 24px;
+  padding: 16px 32px;
   border-radius: 8px;
-  background: rgba(168, 85, 247, 0.1);
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
   transition: all 0.3s ease;
 }
 
 .contact-link:hover {
-  background: rgba(168, 85, 247, 0.2);
-  transform: translateY(-2px);
+  background: rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.4);
   color: #c084fc;
-}
-
-.contact-icon {
-  font-size: 1.2rem;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
 }
 
 /* Projects Section */
 .projects-section {
   background: #0a0118;
+  padding: 80px 20px;
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-.project-card {
-  background: rgba(168, 85, 247, 0.05);
-  border: 1px solid rgba(168, 85, 247, 0.2);
-  border-radius: 16px;
-  padding: 30px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.project-card:hover {
-  background: rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.4);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(168, 85, 247, 0.3);
-}
-
-.project-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.project-icon {
-  font-size: 2.5rem;
-}
-
-.project-card h3 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.4rem;
-  color: #ffffff;
-}
-
-.project-description {
+.projects-placeholder {
   font-family: 'Saira', sans-serif;
-  font-size: 1rem;
-  color: #c7d2fe;
-  line-height: 1.7;
-  flex-grow: 1;
-}
-
-.project-tags {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.tag {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.75rem;
-  padding: 6px 14px;
-  background: rgba(168, 85, 247, 0.2);
-  color: #c084fc;
-  border-radius: 20px;
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  letter-spacing: 0.05em;
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-align: center;
+  color: #9ca3af;
+  margin: 60px auto;
+  max-width: 600px;
+  font-style: italic;
 }
 
 /* Responsive */
@@ -522,22 +462,11 @@
     font-size: 1rem;
   }
 
-  .sponsors-grid,
-  .projects-grid {
+  .sponsors-grid {
     grid-template-columns: 1fr;
   }
 
   .contact-info {
     padding: 30px 20px;
-  }
-
-  .contact-details {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .contact-link {
-    width: 100%;
-    justify-content: center;
   }
 }
