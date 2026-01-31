@@ -22,6 +22,13 @@ const DepartmentPathway = ({ members = [] }) => {
 
   return (
     <div className="department-pathway">
+      {/* Shadow Quote - Fixed Position Outside Containers */}
+      {selectedMember && (
+        <div className="quote-echo" aria-hidden="true">
+          {selectedMember.quote}
+        </div>
+      )}
+      
       <div className="split-canvas">
         {/* LEFT: Static Name Field */}
         <div className="name-field">
@@ -43,7 +50,7 @@ const DepartmentPathway = ({ members = [] }) => {
         </div>
 
         {/* RIGHT: Reactive Quote Field */}
-        <div className="quote-field">
+        <div className={`quote-field ${selectedMember ? 'active' : ''}`}>
           {selectedMember ? (
             <div className="quote-display">
               <div className="quote-name">{selectedMember.name}</div>
