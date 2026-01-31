@@ -359,7 +359,7 @@ function Robohi() {
               </div>
               <h3>Instagram</h3>
               <p>@genesis.vitc</p>
-              <div className="hover-text">Follow our journey</div>
+              <div className="hover-text">Keep up with us</div>
             </a>
           </div>
         </div>
