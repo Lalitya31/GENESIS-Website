@@ -25,7 +25,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  opacity: 0.6;
+  opacity: 0.15; /* Heavily subdued */
+  filter: blur(8px) grayscale(0.5); /* Blurred and desaturated */
   z-index: 0;
   pointer-events: none;
 }
@@ -43,20 +44,20 @@
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(168, 85, 247, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(168, 85, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.04) 1px, transparent 1px);
   background-size: 80px 80px;
   z-index: 0;
   pointer-events: none;
-  animation: gridPulse 4s ease-in-out infinite;
+  animation: gridPulse 6s ease-in-out infinite;
 }
 
 @keyframes gridPulse {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.2;
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.35;
   }
 }
 
@@ -68,17 +69,127 @@
   z-index: 1;
 }
 
-/* Hero Section */
-.hero-section {
+/* Hero Section - Clean & Professional */
+.hero-intro {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 8vh;
+  max-height: 8vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 20px 0 20px;
+  z-index: 2;
+}
+
+.hero-content {
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+  margin-top: -85px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-main-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  text-shadow: 
+    0 0 15px rgba(168, 85, 247, 0.5),
+    0 0 30px rgba(168, 85, 247, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #e9d5ff 50%, #a855f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-tagline {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  font-weight: 400;
+  color: #c4b5fd;
+  letter-spacing: 0.15em;
+  margin: 0 0 8px 0;
+  opacity: 0.9;
+}
+
+.scroll-indicator {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 2;
+  gap: 3px;
+  opacity: 0.5;
+  animation: fadeIn 0.8s ease-out 0.3s both;
+}
+
+.scroll-indicator span {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #e9d5ff;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scroll-arrow {
+  font-size: 1.2rem;
+  color: #a855f7;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-6px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+/* Glowy Title for Engineering the Intelligence */
+.glowy-title {
+  text-shadow: 
+    0 0 20px rgba(168, 85, 247, 0.8),
+    0 0 40px rgba(168, 85, 247, 0.5),
+    0 0 60px rgba(168, 85, 247, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #e9d5ff 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titlePulse 3s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.2);
+  }
 }
 
 /* Card Particles - Small, glowy, low opacity, confined to cards area */
@@ -212,7 +323,7 @@
     0 0 30px rgba(216, 180, 254, 0.5);
 }
 
-/* Heading Section */
+/* OLD STYLES - REMOVED (Robot + Laser Design)
 .heading-section {
   position: relative;
   z-index: 10;
@@ -269,7 +380,6 @@
   width: 80%;
 }
 
-/* Robot Head SVG */
 .robot-container {
   position: relative;
   z-index: 5;
@@ -288,7 +398,6 @@
   animation: robotFloat 6s ease-in-out infinite;
 }
 
-/* Animations */
 @keyframes robotFloat {
   0%, 100% {
     transform: translateY(0px);
@@ -297,7 +406,9 @@
     transform: translateY(-20px);
   }
 }
+END OLD STYLES */
 
+/* Animations */
 @keyframes bgFloat {
   0%, 100% {
     transform: translate(0, 0) rotate(0deg);
@@ -310,7 +421,8 @@
 /* Departments Section - Vertical Neural Flow */
 .departments-section {
   min-height: 100vh;
-  padding: 80px 20px;
+  padding: 0px 20px;
+  margin-top: -40px;
   background: transparent;
   position: relative;
   overflow: visible;
@@ -325,7 +437,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 /* Neural Spine Container */
@@ -751,7 +863,7 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* Floating Tech Words - Confined to hero section only */
+/* OLD STYLES - Floating Tech Words (REMOVED)
 .floating-tech-words {
   position: absolute;
   width: 100%;
@@ -761,19 +873,6 @@
   pointer-events: none;
   z-index: 2;
   overflow: hidden;
-}
-
-/* Make sure hero-section contains the words */
-.hero-section {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; /* This keeps words inside */
-  z-index: 2;
 }
 
 .tech-word {
@@ -799,7 +898,6 @@
   }
 }
 
-/* Stagger animation delays */
 .tech-word:nth-child(1) { animation-delay: 0s; }
 .tech-word:nth-child(2) { animation-delay: 0.5s; }
 .tech-word:nth-child(3) { animation-delay: 1s; }
@@ -816,12 +914,13 @@
 .tech-word:nth-child(14) { animation-delay: 6.5s; }
 .tech-word:nth-child(15) { animation-delay: 7s; }
 .tech-word:nth-child(16) { animation-delay: 7.5s; }
+END OLD STYLES */
 
 /* Mobile - hide some words */
 @media (max-width: 768px) {
-  .tech-word:nth-child(n+9) {
+  /* .tech-word:nth-child(n+9) {
     display: none;
-  }
+  } */
 }
 
 /* Mobile - fewer particles */
@@ -837,18 +936,29 @@
     padding-top: 5vh;
   }
 
-  .glowy-heading {
-    font-size: clamp(1.5rem, 7vw, 2.5rem);
-    letter-spacing: 0.08em;
-    padding: 10px 20px;
+  .hero-intro {
+    min-height: 1vh;
+    max-height: 1vh;
+    padding: 15px 20px 8px 20px;
   }
 
-  .robot-head-svg {
-    max-width: 90%;
+  .hero-main-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 6px;
   }
 
-  .robot-head-svg line {
-    display: none;
+  .hero-tagline {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  .scroll-indicator span {
+    font-size: 0.65rem;
+  }
+
+  .scroll-arrow {
+    font-size: 1rem;
   }
 
   .departments-title {
@@ -876,7 +986,6 @@
     gap: 30px;
   }
   
-  /* Email card same size on mobile */
   .email-card {
     grid-column: auto;
   }
@@ -887,8 +996,17 @@
 }
 
 @media (max-width: 480px) {
-  .glowy-heading {
-    font-size: 1.5rem;
-    padding: 8px 15px;
+  .hero-intro {
+    min-height: 18vh;
+    max-height: 18vh;
+  }
+
+  .hero-main-title {
+    font-size: 1.3rem;
+    letter-spacing: 0.15em;
+  }
+
+  .hero-tagline {
+    font-size: 0.75rem;
   }
 }

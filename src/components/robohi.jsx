@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './robohi.css';
 
@@ -8,237 +8,41 @@ import softwareImg from '../assets/images/software.png';
 import leadsImg from '../assets/images/leads.png';
 
 function Robohi() {
-  const containerRef = useRef(null);
-  const departmentsRef = useRef(null);
   const navigate = useNavigate();
-  const [laserAngle, setLaserAngle] = useState(0);
-
+  const [scrollProgress, setScrollProgress] = useState(0);
+  
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (window.innerWidth < 768) return;
-
-      const container = containerRef.current;
-      if (!container) return;
-
-      const rect = container.getBoundingClientRect();
-      const eyeX = rect.left + (rect.width * 0.5);
-      const eyeY = rect.top + (rect.height * 0.4);
-      const angle = Math.atan2(e.clientY - eyeY, e.clientX - eyeX) * (180 / Math.PI);
-      
-      setLaserAngle(angle);
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollTop / docHeight;
+      setScrollProgress(progress);
     };
-
-    const handleMouseLeave = () => {
-      setLaserAngle(0);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseleave', handleMouseLeave);
-    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const handleMeetTheTeam = () => {
-    departmentsRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  // Add this useEffect for laser-word interaction
-  useEffect(() => {
-    const handleLaserWordGlow = () => {
-      const words = document.querySelectorAll('.tech-word');
-      const container = containerRef.current;
-      
-      if (!container) return;
-      
-      const rect = container.getBoundingClientRect();
-      const laserOriginX = rect.left + (rect.width * 0.5);
-      const laserOriginY = rect.top + (rect.height * 0.4);
-      
-      words.forEach(word => {
-        const wordRect = word.getBoundingClientRect();
-        const wordCenterX = wordRect.left + wordRect.width / 2;
-        const wordCenterY = wordRect.top + wordRect.height / 2;
-        
-        // Calculate distance from laser origin to word
-        const distance = Math.sqrt(
-          Math.pow(wordCenterX - laserOriginX, 2) + 
-          Math.pow(wordCenterY - laserOriginY, 2)
-        );
-        
-        // Calculate angle to word
-        const angleToWord = Math.atan2(wordCenterY - laserOriginY, wordCenterX - laserOriginX) * (180 / Math.PI);
-        const angleDifference = Math.abs(angleToWord - laserAngle);
-        
-        // If laser is pointing near the word (within 15 degrees) and close enough
-        if (angleDifference < 15 && distance < 800) {
-          // Inverse proportion: closer = more glow
-          const glowIntensity = Math.max(0, 1 - (distance / 800));
-          const opacity = 0.15 + (glowIntensity * 0.85); // 0.15 to 1
-          
-          word.style.color = `rgba(168, 85, 247, ${opacity})`;
-          word.style.textShadow = `
-            0 0 ${20 * glowIntensity}px rgba(168, 85, 247, ${glowIntensity}),
-            0 0 ${40 * glowIntensity}px rgba(236, 72, 153, ${glowIntensity * 0.8}),
-            0 0 ${60 * glowIntensity}px rgba(168, 85, 247, ${glowIntensity * 0.6})
-          `;
-          word.style.transform = `scale(${1 + glowIntensity * 0.2})`;
-        } else {
-          // Reset to default dim state
-          word.style.color = 'rgba(168, 85, 247, 0.15)';
-          word.style.textShadow = '0 0 10px rgba(168, 85, 247, 0.1)';
-          word.style.transform = 'scale(1)';
-        }
-      });
-    };
-    
-    const interval = setInterval(handleLaserWordGlow, 50);
-    
-    return () => clearInterval(interval);
-  }, [laserAngle]);
 
   return (
     <div className="robo-hi">
-      {/* Neon Grid - Full page, fixed position */}
+      {/* Neon Grid */}
       <div className="neon-grid"></div>
 
-      {/* Hero Section with Robot */}
-      <div className="hero-section">
-        {/* Floating Tech Words */}
-        <div className="floating-tech-words">
-          <span className="tech-word" data-word="SOFTWARE" style={{ top: '25%', left: '20%' }}>SOFTWARE</span>
-          <span className="tech-word" data-word="AI" style={{ top: '35%', left: '75%' }}>AI</span>
-          <span className="tech-word" data-word="GRIT" style={{ top: '45%', left: '15%' }}>GRIT</span>
-          <span className="tech-word" data-word="POWER" style={{ top: '40%', right: '18%' }}>POWER</span>
-          <span className="tech-word" data-word="STRENGTH" style={{ top: '60%', left: '22%' }}>STRENGTH</span>
-          <span className="tech-word" data-word="ELASTICITY" style={{ top: '28%', right: '22%' }}>ELASTICITY</span>
-          <span className="tech-word" data-word="SOCKET" style={{ top: '65%', right: '20%' }}>SOCKET</span>
-          <span className="tech-word" data-word="PCB" style={{ top: '70%', left: '18%' }}>PCB</span>
-          <span className="tech-word" data-word="RC" style={{ top: '50%', right: '25%' }}>RC</span>
-          <span className="tech-word" data-word="FORUM" style={{ top: '75%', right: '40%' }}>FORUM</span>
-          <span className="tech-word" data-word="AGILE" style={{ top: '35%', left: '28%' }}>AGILE</span>
-          <span className="tech-word" data-word="LOAD" style={{ top: '55%', left: '25%' }}>LOAD</span>
-          <span className="tech-word" data-word="CONNECTION" style={{ top: '72%', left: '25%' }}>CONNECTION</span>
-          <span className="tech-word" data-word="LFR" style={{ top: '48%', left: '78%' }}>LFR</span>
-          <span className="tech-word" data-word="SENSORS" style={{ top: '20%', left: '35%' }}>SENSORS</span>
-          <span className="tech-word" data-word="ROS" style={{ top: '78%', right: '25%' }}>ROS</span>
+      {/* Hero Section - Clean & Professional */}
+      <section className="hero-intro">
+        <div className="hero-content">
+          <h1 className="hero-main-title">GENESIS</h1>
+          <p className="hero-tagline">Where Innovation Meets Intelligence</p>
+          <div className="scroll-indicator">
+            <span>Explore Our Disciplines</span>
+            <div className="scroll-arrow">↓</div>
+          </div>
         </div>
-
-        <div className="heading-section">
-          <h1 className="glowy-heading" onClick={handleMeetTheTeam}>
-            MEET THE TEAM
-          </h1>
-        </div>
-        
-        <div className="robot-container" ref={containerRef}>
-          <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" className="robot-head-svg">
-            <defs>
-              <linearGradient id="laserBeam" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#a855f7" stopOpacity="0.95" />
-                <stop offset="3%" stopColor="#c084fc" stopOpacity="0.9" />
-                <stop offset="8%" stopColor="#e879f9" stopOpacity="0.8" />
-                <stop offset="15%" stopColor="#c084fc" stopOpacity="0.65" />
-                <stop offset="25%" stopColor="#a855f7" stopOpacity="0.5" />
-                <stop offset="40%" stopColor="#e879f9" stopOpacity="0.3" />
-                <stop offset="60%" stopColor="#c084fc" stopOpacity="0.15" />
-                <stop offset="80%" stopColor="#a855f7" stopOpacity="0.05" />
-                <stop offset="95%" stopColor="#e879f9" stopOpacity="0.01" />
-                <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
-              </linearGradient>
-
-              <filter id="laserGlow">
-                <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-
-              <filter id="laserHaze">
-                <feGaussianBlur stdDeviation="15" result="blur1"/>
-                <feGaussianBlur stdDeviation="25" result="blur2"/>
-                <feMerge>
-                  <feMergeNode in="blur2"/>
-                  <feMergeNode in="blur1"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-
-              <linearGradient id="metalShine" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#f3f4f6" />
-                <stop offset="50%" stopColor="#d1d5db" />
-                <stop offset="100%" stopColor="#9ca3af" />
-              </linearGradient>
-
-              <linearGradient id="darkMetal" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#374151" />
-                <stop offset="50%" stopColor="#1f2937" />
-                <stop offset="100%" stopColor="#111827" />
-              </linearGradient>
-            </defs>
-
-            <g>
-              <ellipse cx="300" cy="450" rx="150" ry="30" fill="#1f2937" opacity="0.3"/>
-              <circle cx="300" cy="280" r="180" fill="url(#metalShine)" stroke="#6b7280" strokeWidth="2"/>
-              <ellipse cx="300" cy="180" rx="120" ry="80" fill="#ffffff" opacity="0.3"/>
-              <circle cx="300" cy="280" r="170" fill="none" stroke="#9ca3af" strokeWidth="1" opacity="0.4"/>
-              <ellipse cx="300" cy="280" rx="140" ry="160" fill="url(#darkMetal)" stroke="#374151" strokeWidth="2"/>
-              <ellipse cx="300" cy="280" rx="120" ry="140" fill="#0f172a" opacity="0.8"/>
-            </g>
-
-            <g>
-              <circle cx="300" cy="240" r="70" fill="#111827" stroke="#374151" strokeWidth="3"/>
-              <circle cx="300" cy="240" r="62" fill="none" stroke="#4b5563" strokeWidth="2"/>
-              <circle cx="300" cy="240" r="55" fill="none" stroke="#6b21a8" strokeWidth="1.5" opacity="0.6"/>
-              <circle cx="300" cy="240" r="35" fill="#1f2937"/>
-              <circle cx="300" cy="240" r="28" fill="#6b21a8" opacity="0.7"/>
-              <circle cx="300" cy="240" r="18" fill="#a855f7" filter="url(#laserGlow)"/>
-              <circle cx="300" cy="240" r="10" fill="#e879f9"/>
-              <circle cx="295" cy="235" r="5" fill="#faf5ff" opacity="0.9"/>
-
-              <g style={{ transform: `rotate(${laserAngle}deg)`, transformOrigin: '300px 240px', transition: 'transform 0.1s ease-out' }}>
-                {/* Ultra-wide outer haze - very diffused */}
-                <path d="M 300 240 L 3000 100 L 3000 380 Z" fill="url(#laserBeam)" opacity="0.03" filter="url(#laserHaze)"/>
-                <path d="M 300 240 L 3000 130 L 3000 350 Z" fill="url(#laserBeam)" opacity="0.05" filter="url(#laserHaze)"/>
-                <path d="M 300 240 L 3000 150 L 3000 330 Z" fill="url(#laserBeam)" opacity="0.08" filter="url(#laserHaze)"/>
-                
-                {/* Wide glow layers */}
-                <path d="M 300 240 L 2800 170 L 2800 310 Z" fill="url(#laserBeam)" opacity="0.12" filter="url(#laserGlow)"/>
-                <path d="M 300 240 L 2600 185 L 2600 295 Z" fill="url(#laserBeam)" opacity="0.18" filter="url(#laserGlow)"/>
-                <path d="M 300 240 L 2400 200 L 2400 280 Z" fill="url(#laserBeam)" opacity="0.25" filter="url(#laserGlow)"/>
-                
-                {/* Mid-range glow */}
-                <path d="M 300 240 L 2200 210 L 2200 270 Z" fill="url(#laserBeam)" opacity="0.35" filter="url(#laserGlow)"/>
-                <path d="M 300 240 L 2000 218 L 2000 262 Z" fill="url(#laserBeam)" opacity="0.5" filter="url(#laserGlow)"/>
-                
-                {/* Core beam */}
-                <path d="M 300 240 L 1800 225 L 1800 255 Z" fill="url(#laserBeam)" opacity="0.7"/>
-                <path d="M 300 240 L 1600 232 L 1600 248 Z" fill="url(#laserBeam)" opacity="0.9"/>
-                <path d="M 300 240 L 1400 237 L 1400 243 Z" fill="#e879f9" opacity="0.95"/>
-              </g>
-            </g>
-
-            <g>
-              <rect x="80" y="250" width="30" height="80" rx="15" fill="url(#metalShine)" stroke="#6b7280" strokeWidth="2"/>
-              <rect x="490" y="250" width="30" height="80" rx="15" fill="url(#metalShine)" stroke="#6b7280" strokeWidth="2"/>
-            </g>
-
-            <g>
-              <rect x="285" y="80" width="30" height="50" rx="15" fill="url(#metalShine)" stroke="#6b7280" strokeWidth="2"/>
-              <circle cx="300" cy="70" r="12" fill="#a855f7" stroke="#6b21a8" strokeWidth="2" filter="url(#laserGlow)"/>
-              <circle cx="300" cy="70" r="6" fill="#faf5ff"/>
-            </g>
-          </svg>
-        </div>
-      </div>
+      </section>
 
       {/* Departments Section - Vertical Neural Flow */}
-      <div className="departments-section" ref={departmentsRef}>
-        <h2 className="departments-title">Engineering the Intelligence</h2>
+      <div className="departments-section">
+        <h2 className="departments-title glowy-title">Engineering the Intelligence</h2>
         
         <div className="neural-spine">
           {/* Leads Node */}
