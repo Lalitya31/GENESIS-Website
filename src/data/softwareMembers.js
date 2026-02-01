@@ -48,6 +48,6 @@ export const softwareMembers = [
   {
     id: 10,
     name: "Swayam Sahoo",
-    quote: " "
+    quote: "In Progress... "
   }
 ];
