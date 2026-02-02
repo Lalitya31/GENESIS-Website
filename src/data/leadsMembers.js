@@ -22,7 +22,7 @@ export const leadsMembers = [
     id: 4,
     name: "Harshit Sehgal",
     role: "Vice Captain",
-    quote: " "
+    quote: "One can have no smaller or greater mastery than mastery of oneself."
   },
   {
     id: 5,
